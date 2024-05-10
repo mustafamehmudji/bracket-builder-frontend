@@ -17,22 +17,22 @@ export const fetchSignup = async (
 export const fetchLogin = async (
   data: ILoginBody
 ): Promise<AxiosResponse<APIResponse<ILoginResponse>>> => {
-  return {
-    data: {
-      status: true,
-      message: "User logged in",
-      data: {
-        jwt: "test_token",
-        message: "test message",
-      },
-    },
-    status: 200,
-    statusText: "OK",
-    headers: {},
-    config: {
-      headers: {} as AxiosHeaders,
-    },
-  };
+  // return {
+  //   data: {
+  //     status: true,
+  //     message: "User logged in",
+  //     data: {
+  //       jwt: "test_token",
+  //       message: "test message",
+  //     },
+  //   },
+  //   status: 200,
+  //   statusText: "OK",
+  //   headers: {},
+  //   config: {
+  //     headers: {} as AxiosHeaders,
+  //   },
+  // };
 
   return await ax({
     method: "post",
@@ -58,8 +58,8 @@ export const fetchLogout = async (): Promise<
     },
   };
 
-  return await ax({
-    method: "post",
-    url: endpoints.logout,
-  });
+  // return await ax({
+  //   method: "post",
+  //   url: endpoints.logout,
+  // });
 };
