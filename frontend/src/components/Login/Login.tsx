@@ -46,6 +46,7 @@ const Login = () => {
                   <Form.Control
                     type="email"
                     placeholder="Enter email"
+                    name="email"
                     required
                   />
                 </Form.Group>
@@ -55,6 +56,7 @@ const Login = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    name="password"
                     required
                   />
                 </Form.Group>

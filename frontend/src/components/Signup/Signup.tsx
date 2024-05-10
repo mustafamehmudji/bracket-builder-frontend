@@ -20,9 +20,12 @@ const SignUp = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    console.log(form);
 
     if (form.checkValidity() === false) {
       event.stopPropagation();
+      setValidated(false);
+      return;
     }
 
     setValidated(true);
@@ -84,6 +87,7 @@ const SignUp = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    name="password"
                     required
                   />
                 </Form.Group>

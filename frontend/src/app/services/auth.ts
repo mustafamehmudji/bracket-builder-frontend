@@ -16,7 +16,7 @@ export const fetchSignup = async (
 
 export const fetchLogin = async (
   data: ILoginBody
-): Promise<AxiosResponse<APIResponse<ILoginResponse>>> => {
+): Promise<AxiosResponse<ILoginResponse>> => {
   // return {
   //   data: {
   //     status: true,

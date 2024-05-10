@@ -65,7 +65,7 @@ const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
-        state.token = action.payload.data.data.jwt;
+        state.token = action.payload.data.jwt;
         state.logged_in = true;
         state.loading = false;
       })

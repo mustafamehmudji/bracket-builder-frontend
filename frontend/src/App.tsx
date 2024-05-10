@@ -7,6 +7,7 @@ import { routes } from "./lib/constants";
 import Layout from "./components/common/Layout/Layout";
 import ParticlesBackground from "./ParticlesBackground";
 import { useAppSelector } from "./app/hooks";
+import { ToastContainer } from "react-bootstrap";
 
 const App = () => {
   const logged_in = useAppSelector((state) => state.auth.logged_in);
