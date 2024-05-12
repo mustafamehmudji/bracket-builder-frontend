@@ -1,9 +1,3 @@
-// const Signup = () => {
-//   return <div>Signup</div>;
-// };
-
-// export default Signup;
-
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";

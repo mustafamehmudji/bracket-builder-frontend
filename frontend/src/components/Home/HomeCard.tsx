@@ -66,7 +66,7 @@ const HomeCard: React.FC<IProps> = ({ img, title, text, buttonProps }) => {
                 placeholder="Enter No. of Teams"
                 type="number"
                 min={3}
-                max={10}
+                max={17}
                 required
               />
             </Col>
