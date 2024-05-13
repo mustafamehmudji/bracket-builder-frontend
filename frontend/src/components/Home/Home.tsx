@@ -1,29 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import HomeCarousel from "./HomeCarousel";
 import HomeCard from "./HomeCard";
+import FixtureImageModal from "./FixtureImageModal";
 
 interface IProps {}
 
 const Home: React.FC<IProps> = ({}) => {
+  const [selectedImage, setSelectedImage] = useState<string>();
+  const [showFixtureImageModal, setShowFixtureImageModal] =
+    useState<boolean>(false);
+
+  const toggleFixtureImageModal = () =>
+    setShowFixtureImageModal((prevState) => !prevState);
+
   const cards = [
     {
       img: "/images/single-elimination.webp",
       title: "Single Elimination",
       text: "Single elimination is a tournament format where each participant or team plays in only one game or match per round. If a participant loses a game, they are eliminated from the tournament. The winners advance to the next round until only one remains and is declared the champion.",
-      buttonProps: {},
+      minValue: 3,
+      maxValue: 17,
+      setImage: function (value: number) {
+        if (isNaN(value)) return;
+        setSelectedImage(`images/single/S${value}.png`);
+        toggleFixtureImageModal();
+      },
     },
     {
       img: "/images/double-elimination.webp",
       title: "Double Elimination",
       text: "Double elimination is a tournament format that provides participants with two chances to stay in the competition. Each team or player must lose twice before being eliminated from the tournament. If a participant loses a match, they move to the loser's bracket, where they have another opportunity to continue competing. The winners of the loser's bracket may eventually face the winner of the winner's bracket in the final match to determine the overall champion. This format adds an extra layer of excitement and fairness by allowing competitors to recover from a single loss and showcase their resilience in the pursuit of victory.",
-      buttonProps: {},
+      minValue: 3,
+      maxValue: 17,
+      setImage: function (value: number) {
+        if (isNaN(value)) return;
+        setSelectedImage(`images/double/D${value}.png`);
+        toggleFixtureImageModal();
+      },
     },
     {
       img: "/images/round-robin.webp",
       title: "Round Robin",
       text: "Round robin is a tournament format where each participant competes against every other participant in the tournament. Matches are scheduled so that each competitor meets every other competitor once. It ensures fairness by giving each participant an equal opportunity to compete against all others. Points are often awarded for wins, draws, or other outcomes, and the participant with the highest total points at the end of the round robin is declared the winner.",
-      buttonProps: {},
+      minValue: 3,
+      maxValue: 17,
+      setImage: function (value: number) {
+        if (isNaN(value)) return;
+        setSelectedImage(`images/round/R${value}.png`);
+        toggleFixtureImageModal();
+      },
     },
   ];
 
@@ -71,16 +97,26 @@ const Home: React.FC<IProps> = ({}) => {
               </Card.Body>
             </Card>
           </Col>
-          {cards.map(({ img, title, text, buttonProps }) => (
+          {cards.map(({ img, title, text, minValue, maxValue, setImage }) => (
             <Col lg={4} md={6} className="my-5" key={title}>
               <HomeCard
+                key={title}
                 img={img}
                 title={title}
                 text={text}
-                buttonProps={buttonProps}
+                minValue={minValue}
+                maxValue={maxValue}
+                setImage={setImage}
               />
             </Col>
           ))}
+          {showFixtureImageModal ? (
+            <FixtureImageModal
+              show={showFixtureImageModal}
+              onHide={toggleFixtureImageModal}
+              selectedImage={selectedImage}
+            />
+          ) : null}
         </Row>
       </Container>
     </>

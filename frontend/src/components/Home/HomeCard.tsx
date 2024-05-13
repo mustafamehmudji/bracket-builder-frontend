@@ -5,10 +5,19 @@ interface IProps {
   img: string;
   title: string;
   text: string;
-  buttonProps: ButtonProps;
+  minValue: number;
+  maxValue: number;
+  setImage: (value: number) => void;
 }
 
-const HomeCard: React.FC<IProps> = ({ img, title, text, buttonProps }) => {
+const HomeCard: React.FC<IProps> = ({
+  img,
+  title,
+  text,
+  minValue,
+  maxValue,
+  setImage,
+}) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [validated, setValidated] = useState(false);
 
@@ -42,14 +51,20 @@ const HomeCard: React.FC<IProps> = ({ img, title, text, buttonProps }) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
+    setValidated(true);
 
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
+      return;
     }
 
-    setValidated(true);
+    const formData = new FormData(event.currentTarget);
+    const fCount = formData.get("fixture_count");
+
+    // Get the images and extract image
+    setImage(parseInt(String(fCount)));
   };
+
   return (
     <Card className="text-center rounded-4 border-primary">
       <div className="overflow rounded-4">
@@ -65,8 +80,9 @@ const HomeCard: React.FC<IProps> = ({ img, title, text, buttonProps }) => {
               <Form.Control
                 placeholder="Enter No. of Teams"
                 type="number"
-                min={3}
-                max={17}
+                name="fixture_count"
+                min={minValue}
+                max={maxValue}
                 required
               />
             </Col>

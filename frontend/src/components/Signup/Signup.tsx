@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
-import { fetchLogin, fetchSignup } from "../../app/features/authSlice";
+import { fetchSignup } from "../../app/features/authSlice";
 import { ISignupBody } from "../../types/auth";
 import { routes } from "../../lib/constants";
 
